@@ -1,0 +1,207 @@
+// Phonebook Application Pseudocode
+
+// Data Structure: Contact
+struct Contact:
+    name: string
+    phone_number: string
+    email: string // Optional field
+
+// Main data structure: Array of Contacts
+contacts: array of Contact // Sorted array of contacts
+
+// Helper Function: Display Menu
+function displayMenuOptions() -> void:
+    print "Phonebook Application Menu:"
+    print "1. Insert Contact"
+    print "2. Search Contact"
+    print "3. Display All Contacts"
+    print "4. Delete Contact"
+    print "5. Update Contact"
+    print "6. Sort Contacts"
+    print "7. Analyze Search Efficiency"
+    print "8. Exit"
+    print "Please enter your choice (1-8):"
+
+// Module 1: Insert Contact
+function insertContact(name: string, phone_number: string, email: string = null) -> boolean:
+    // Check for existing contacts with the same name or phone number
+    if searchContact(name) != null or searchContact(phone_number) != null:
+        return false // Contact already exists
+    else:
+        newContact = new Contact(name, phone_number, email)
+        append newContact to contacts
+        if size of contacts > 1:
+            sortContacts() // Keep the array sorted after insertion
+        return true
+
+// Module 2: Search Contact
+function searchContact(query: string) -> Contact or null:
+    // Binary search implementation for name
+    left = 0
+    right = length of contacts - 1
+    
+    while left <= right:
+        mid = (left + right) / 2
+        if contacts[mid].name == query:
+            return contacts[mid]
+        else if contacts[mid].name < query:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    // If not found by name, perform linear search for phone number
+    for each contact in contacts:
+        if contact.phone_number == query:
+            return contact
+    
+    // If not found by name or phone number
+    return null
+
+// Module 3: Display All Contacts
+function displayAllContacts() -> void:
+    if length of contacts == 0:
+        print "Phonebook is empty"
+    else:
+        print "Contacts in the phonebook:"
+        for each contact in contacts:
+            print "Name: " + contact.name + ", Phone: " + contact.phone_number + ", Email: " + (contact.email or "N/A")
+
+// Module 4: Delete Contact
+function deleteContact(query: string) -> boolean:
+    contact = searchContact(query)
+    if contact != null:
+        remove contact from contacts
+        return true
+    else:
+        return false
+
+// Module 5: Update Contact
+function updateContact(query: string, new_name: string, new_phone_number: string, new_email: string = null) -> boolean:
+    contact = searchContact(query)
+    if contact != null:
+        // Check if the new name or phone number already exists (excluding the current contact)
+        if (new_name != contact.name and searchContact(new_name) != null) or 
+           (new_phone_number != contact.phone_number and searchContact(new_phone_number) != null):
+            return false // New name or phone number already exists
+        else:
+        contact.name = new_name
+        contact.phone_number = new_phone_number
+        contact.email = new_email
+        sortContacts() // Re-sort the array after update
+        return true
+    else:
+        return false
+
+// Module 6: Sort Contacts (using Merge Sort)
+function sortContacts() -> void:
+    contacts = mergeSort(contacts)
+
+function mergeSort(arr: array of Contact) -> array of Contact:
+    if length of arr <= 1:
+        return arr
+    else:
+        mid = length of arr / 2
+        left = mergeSort(arr[0 to mid-1])
+        right = mergeSort(arr[mid to length of arr - 1])
+        return merge(left, right)
+
+function merge(left: array of Contact, right: array of Contact) -> array of Contact:
+    result = []
+    i = 0 // left array index
+    j = 0 // right array index
+    
+    while i < length of left and j < length of right:
+        if left[i].name <= right[j].name:
+            append left[i] to result
+            i = i + 1
+        else:
+            append right[j] to result
+            j = j + 1
+    
+    // Append any remaining elements
+    while i < length of left:
+        append left[i] to result
+        i = i + 1
+    
+    while j < length of right:
+        append right[j] to result
+        j = j + 1
+    
+    return result
+
+// Module 7: Analyze Search Efficiency
+function analyzeSearchEfficiency() -> void:
+    print "Search Efficiency Analysis:"
+    print "1. Best Case (Binary Search): O(1) - When the contact is at the middle of the sorted array"
+    print "2. Average Case (Binary Search): O(log n) - Where n is the number of contacts"
+    print "3. Worst Case (Linear Search): O(n) - When searching by phone number"
+    print "Note: The use of binary search for names significantly improves efficiency over linear search."
+
+// Main Program
+function main() -> void:
+    while true:
+        displayMenuOptions()
+        read user_choice: integer
+        
+        switch user_choice:
+            case 1: 
+                print "Enter name:"
+                read name: string
+                print "Enter phone number:"
+                read phone_number: string
+                print "Enter email (optional, press Enter to skip):"
+                read email: string
+                result = insertContact(name, phone_number, email)
+                if result == true:
+                    print "Contact inserted successfully"
+                else:
+                    print "Failed to insert contact. Contact may already exist."
+            case 2: 
+                print "Enter name or phone number to search:"
+                read query: string
+                result = searchContact(query)
+                if result != null:
+                    print "Contact found:"
+                    print "Name: " + result.name + ", Phone: " + result.phone_number + ", Email: " + (result.email or "N/A")
+                else:
+                    print "Contact not found"
+            case 3: 
+                displayAllContacts()
+            case 4: 
+                print "Enter name or phone number of contact to delete:"
+                read query: string
+                result = deleteContact(query)
+                if result == true:
+                    print "Contact deleted successfully"
+                else:
+                    print "Contact not found"
+            case 5: 
+                print "Enter name or phone number of contact to update:"
+                read query: string
+                print "Enter new name:"
+                read new_name: string
+                print "Enter new phone number:"
+                read new_phone_number: string
+                print "Enter new email (optional, press Enter to skip):"
+                read new_email: string
+                result = updateContact(query, new_name, new_phone_number, new_email)
+                if result == true:
+                    print "Contact updated successfully"
+                else:
+                    print "Failed to update contact. Contact not found or new information conflicts with existing contacts."
+            case 6: 
+                sortContacts()
+                print "Contacts sorted successfully"
+            case 7: 
+                analyzeSearchEfficiency()
+            case 8: 
+                print "Exiting Phonebook Application. Goodbye!"
+                exit program
+            default: 
+                print "Invalid choice. Please enter a number between 1 and 8."
+
+        // Add a blank line for readability between operations
+        print ""
+
+// Start the program
+call main()
