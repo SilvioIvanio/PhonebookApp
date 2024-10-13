@@ -5,6 +5,17 @@ This documentation describes the structure and functionality of the **Phonebook 
 
 The application manages contacts, allowing users to add, search, delete, update, sort, and analyze contacts. The project has been implemented in Java, and this documentation outlines the key algorithms, data structures, and core functionalities used in the application.
 
+## Actions Taken (%)
+
+| Student Name & Number | Pseudocode (Modules, Fuctions) | Flowchart | Program Implematation | Documentation |
+| --- | --- | --- | --- | --- |
+| Silvio Etiambulo (224046179) | 80% | 30% | 10% | 10% |
+| Sebulon Kalombo (224063057) |  | 20% |  |  |
+| Cherman Shivolo (224063057) |  |  | 90% |  |
+| Lourena Lourenço (224087924) |  |  |  | 90% |
+| Clive Kamenye (224087921) |  | 50% |  |  |
+| Pinto Kambinda (224085573) | 20% |  |  |  |
+
 ## Section A: Algorithm Representation
 
 This section presents the pseudocode and flowchart for the core operations in the phonebook application. It outlines the data structures used and the logic behind the functionalities.
