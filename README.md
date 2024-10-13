@@ -9,9 +9,9 @@ The application manages contacts, allowing users to add, search, delete, update,
 
 | Student Name & Number | Pseudocode (Modules, Fuctions) | Flowchart | Program Implematation | Documentation |
 | --- | --- | --- | --- | --- |
-| Silvio Etiambulo (224046179) | 80% | 30% | 10% | 10% |
+| Silvio Etiambulo (224046179) | 80% | 30% | 15% | 10% |
 | Sebulon Kalombo (224063057) |  | 20% |  |  |
-| Cherman Shivolo (224063057) |  |  | 90% | 10% |
+| Cherman Shivolo (224063057) |  |  | 85% | 10% |
 | Lourena Lourenço (224087924) |  |  |  | 80% |
 | Clive Kamenye (224087921) |  | 50% |  |  |
 | Pinto Kambinda (224085573) | 20% |  |  |  |
