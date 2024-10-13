@@ -12,7 +12,7 @@ The application manages contacts, allowing users to add, search, delete, update,
 | Silvio Etiambulo (224046179) | 80% | 30% | 10% | 10% |
 | Sebulon Kalombo (224063057) |  | 20% |  |  |
 | Cherman Shivolo (224063057) |  |  | 90% | 10% |
-| Lourena Lourenço (224087924) |  |  |  | 90% |
+| Lourena Lourenço (224087924) |  |  |  | 80% |
 | Clive Kamenye (224087921) |  | 50% |  |  |
 | Pinto Kambinda (224085573) | 20% |  |  |  |
 
